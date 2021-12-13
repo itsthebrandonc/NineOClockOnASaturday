@@ -54,21 +54,21 @@ function syncUpdate() {
       //Start date is 8:59:29
       var startDate = new Date(); //Today (Saturday)
       startDate.setHours(17); //20
-      startDate.setMinutes(44); //59
-      startDate.setSeconds(30); //29
+      startDate.setMinutes(49); //59
+      startDate.setSeconds(27); //29
       startTime = startDate.getTime();
     }
     if (!hitTime) {
       //Hit date is 9:00:00
       var hitDate = new Date(); //Today (Saturday)
       hitDate.setHours(17); //21
-      hitDate.setMinutes(45); //00
+      hitDate.setMinutes(50); //00
       hitDate.setSeconds(00); //00
       hitTime = hitDate.getTime();
     }
 
     secondsIntoFilm = (currentTime - startTime) / 1000;
-    $("status").innerHTML = "Starts In: " + (startTime - currentTime) + "<br>" + "9 o'Clock In: " + (hitTime - currentTime);
+    $("status").innerHTML = "Starts In: " + Math.floor((startTime - currentTime)/1000) + "<br>" + "9 o'Clock In: " + Math.floor((hitTime - currentTime)/1000);
     //$("status").innerHTML += "Start Date: " + startDate + "<br>" + "Hit Date: " + hitDate + "<br"> + "Seconds Into Film: " + secondsIntoFilm + "<br>";
 
     if ((currentTime - startTime) / 1000 > 0 && (currentTime - startTime) / 1000 < 1) {
