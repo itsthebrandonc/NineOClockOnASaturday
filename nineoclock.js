@@ -89,8 +89,10 @@ function syncUpdate() {
       videoscreen.play();
     }
   } else {
-    console.log("Pause");
-    videoscreen.pause();
+    if (!videoscreen.paused) {
+      console.log("Pause");
+      videoscreen.pause();
+    }
   }
 
   if (!videoscreen.paused && Math.abs(videoscreen.currentTime-secondsIntoFilm) > 1) {
