@@ -94,7 +94,7 @@ function syncUpdate() {
     //if (!videoscreen.paused) {
       //console.log("Pause");
       //videoscreen.pause();
-    }
+    //}
   }
 
   if (!videoscreen.paused && Math.abs(videoscreen.currentTime-secondsIntoFilm) > 1) {
