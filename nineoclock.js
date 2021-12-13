@@ -56,7 +56,7 @@ function syncUpdate() {
       //Start date is 8:59:29
       var startDate = new Date(); //Today (Saturday)
       startDate.setHours(18); //20
-      startDate.setMinutes(14); //59
+      startDate.setMinutes(15); //59
       startDate.setSeconds(29); //29
       startTime = startDate.getTime();
     }
@@ -64,7 +64,7 @@ function syncUpdate() {
       //Hit date is 9:00:00
       var hitDate = new Date(); //Today (Saturday)
       hitDate.setHours(18); //21
-      hitDate.setMinutes(15); //00
+      hitDate.setMinutes(16); //00
       hitDate.setSeconds(00); //00
       hitTime = hitDate.getTime();
     }
@@ -82,7 +82,7 @@ function syncUpdate() {
       $("status").innerHTML = "";
     }
 
-    #("info").innerHTML = "Date: " + adjustedDate + "<br>" + "Offset: " + worldTimeOffset;
+    $("info").innerHTML = "Date: " + adjustedDate + "<br>" + "Offset: " + worldTimeOffset;
 
     if ((currentTime - startTime) / 1000 > 0 && (currentTime - startTime) / 1000 < 1) {
       console.log("START");
