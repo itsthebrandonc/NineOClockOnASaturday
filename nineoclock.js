@@ -9,6 +9,7 @@ var hitTime;
 var worldTimeOffset = 0;
 var secondsIntoFilm = -100;
 var timeTilStart = 1;
+var playWhenReady = true;
 
 window.onload = function() {
   videoscreen = $("videoscreen");
@@ -95,7 +96,7 @@ function syncUpdate() {
 
   if (secondsIntoFilm >= 0 && secondsIntoFilm <= 341) { //Sing us a song
     console.log("Video Time: " + secondsIntoFilm);
-    if (!videoscreen.ended) {
+    if (videoscreen.ended) {
       videoscreen.src = "pianoman.mp4";
       console.log("Play");
       videoscreen.play();
