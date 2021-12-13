@@ -8,6 +8,7 @@ var startTime;
 var hitTime;
 var worldTimeOffset = 0;
 var secondsIntoFilm = -100;
+var timeTilStart = 1;
 
 window.onload = function() {
   videoscreen = $("videoscreen");
@@ -68,8 +69,17 @@ function syncUpdate() {
     }
 
     secondsIntoFilm = (currentTime - startTime) / 1000;
-    $("status").innerHTML = "Starts In: " + Math.floor((startTime - currentTime)/1000) + "<br>" + "9 o'Clock In: " + Math.floor((hitTime - currentTime)/1000);
-    //$("status").innerHTML += "Start Date: " + startDate + "<br>" + "Hit Date: " + hitDate + "<br"> + "Seconds Into Film: " + secondsIntoFilm + "<br>";
+    timeTilStart = Math.floor((startTime - currentTime)/1000);
+    if (timeTilStart >= 0) {
+      $("status").innerHTML = "Starts In: " + timeTilStart + "<br>" + "9 o'Clock In: " + Math.floor((hitTime - currentTime)/1000);
+      //$("status").innerHTML += "Start Date: " + startDate + "<br>" + "Hit Date: " + hitDate + "<br"> + "Seconds Into Film: " + secondsIntoFilm + "<br>";
+    } else if (timeTilStart < -341) {
+      $("status").innerHTML = "Enjoy your night!";
+    } else if (timeTilStart < -29) {
+      $("status").innerHTML = "It's 9 o'clock on a Saturday!";
+    } else {
+      $("status").innerHTML = "";
+    }
 
     if ((currentTime - startTime) / 1000 > 0 && (currentTime - startTime) / 1000 < 1) {
       console.log("START");
