@@ -46,7 +46,7 @@ function syncUpdate() {
   }
 
   adjustedDate = new Date(currentTime);
-  $("status").innerHTML = "Current Date: " + currentDate + "<br>" + "WorldTimeOffset: " + worldTimeOffset + " <br> " + "Adjusted Date: " + adjustedDate + "<br>";
+  //$("status").innerHTML = "Current Date: " + currentDate + "<br>" + "WorldTimeOffset: " + worldTimeOffset + " <br> " + "Adjusted Date: " + adjustedDate + "<br>";
 
   if (adjustedDate.getDay() == 1) { //It's on a Saturday
     console.log("It's on a Saturday");
@@ -54,21 +54,22 @@ function syncUpdate() {
       //Start date is 8:59:29
       var startDate = new Date(); //Today (Saturday)
       startDate.setHours(17); //20
-      startDate.setMinutes(37); //59
-      startDate.setSeconds(29); //29
+      startDate.setMinutes(44); //59
+      startDate.setSeconds(30); //29
       startTime = startDate.getTime();
     }
     if (!hitTime) {
       //Hit date is 9:00:00
       var hitDate = new Date(); //Today (Saturday)
       hitDate.setHours(17); //21
-      hitDate.setMinutes(38); //00
+      hitDate.setMinutes(45); //00
       hitDate.setSeconds(00); //00
       hitTime = hitDate.getTime();
     }
 
     secondsIntoFilm = (currentTime - startTime) / 1000;
-    $("status").innerHTML += "Start Date: " + startDate + "<br>" + "Hit Date: " + hitDate + "<br"> + "Seconds Into Film: " + secondsIntoFilm + "<br>";
+    $("status").innerHTML = "Starts In: " + (startTime - currentTime) + "<br>" + "9 o'Clock In: " + (hitTime - currentTime);
+    //$("status").innerHTML += "Start Date: " + startDate + "<br>" + "Hit Date: " + hitDate + "<br"> + "Seconds Into Film: " + secondsIntoFilm + "<br>";
 
     if ((currentTime - startTime) / 1000 > 0 && (currentTime - startTime) / 1000 < 1) {
       console.log("START");
@@ -79,6 +80,7 @@ function syncUpdate() {
 
   } else {
     console.log("It's not Saturday");
+    $("status").innerHTML = "Come back on Saturday";
   }
 
   if (secondsIntoFilm >= 0 && secondsIntoFilm <= 341) { //Sing us a song
