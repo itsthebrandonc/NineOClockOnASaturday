@@ -98,7 +98,7 @@ function syncUpdate() {
     console.log("Video Time: " + secondsIntoFilm);
     if (videoscreen.ended) {
       videoscreen.src = "pianoman.mp4";
-      console.log("Play");
+      console.log("Play, isEnded");
       videoscreen.play();
     }
   } else {
