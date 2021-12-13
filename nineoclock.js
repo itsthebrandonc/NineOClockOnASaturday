@@ -84,9 +84,9 @@ function syncUpdate() {
   if (secondsIntoFilm >= 0 && secondsIntoFilm <= 341) { //Sing us a song
     console.log("Video Time: " + secondsIntoFilm);
     videoscreen.seekTo(secondsIntoFilm,false);
-    videoscreen.play();
+    videoscreen.playVideo();
   } else {
-    videoscreen.pause();
+    videoscreen.pauseVideo();
   }
 
 
