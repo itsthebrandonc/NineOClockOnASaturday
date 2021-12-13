@@ -53,16 +53,16 @@ function syncUpdate() {
     if (!startTime) {
       //Start date is 8:59:29
       var startDate = new Date(); //Today (Saturday)
-      startDate.setHours(20); //20
-      startDate.setMinutes(59); //59
+      startDate.setHours(16); //20
+      startDate.setMinutes(24); //59
       startDate.setSeconds(29); //29
       startTime = startDate.getTime();
     }
     if (!hitTime) {
       //Hit date is 9:00:00
       var hitDate = new Date(); //Today (Saturday)
-      hitDate.setHours(21); //21
-      hitDate.setMinutes(00); //00
+      hitDate.setHours(16); //21
+      hitDate.setMinutes(25); //00
       hitDate.setSeconds(00); //00
       hitTime = hitDate.getTime();
     }
@@ -84,6 +84,9 @@ function syncUpdate() {
   if (secondsIntoFilm >= 0 && secondsIntoFilm <= 341) { //Sing us a song
     console.log("Video Time: " + secondsIntoFilm);
     videoscreen.seekTo(secondsIntoFilm,false);
+    videoscreen.play();
+  } else {
+    videoscreen.pause();
   }
 
 
