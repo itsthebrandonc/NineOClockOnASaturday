@@ -81,15 +81,20 @@ function syncUpdate() {
     console.log("It's not Saturday");
   }
 
-  if (secondsIntoFilm >= 0 && secondsIntoFilm <= 341 && videoscreen.paused) { //Sing us a song
+  if (secondsIntoFilm >= 0 && secondsIntoFilm <= 341) { //Sing us a song
     console.log("Video Time: " + secondsIntoFilm);
-    videoscreen.src = "pianoman.mp4";
-    videoscreen.play();
+    if (videoscreen.paused) {
+      videoscreen.src = "pianoman.mp4";
+      console.log("Play");
+      videoscreen.play();
+    }
   } else {
+    console.log("Pause");
     videoscreen.pause();
   }
 
   if (!videoscreen.paused && Math.abs(videoscreen.currentTime-secondsIntoFilm) > 1) {
+    console.log("Resync");
     videoscreen.currentTime = secondsIntoFilm;
   }
 
