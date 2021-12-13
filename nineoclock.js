@@ -95,7 +95,7 @@ function syncUpdate() {
 
   if (secondsIntoFilm >= 0 && secondsIntoFilm <= 341) { //Sing us a song
     console.log("Video Time: " + secondsIntoFilm);
-    if (!videoscreen.paused) {
+    if (!videoscreen.ended) {
       videoscreen.src = "pianoman.mp4";
       console.log("Play");
       videoscreen.play();
