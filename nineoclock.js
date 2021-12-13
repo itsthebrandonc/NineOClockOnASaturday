@@ -100,8 +100,10 @@ function syncUpdate() {
     console.log("Video Time: " + secondsIntoFilm);
     if (videoscreen.emptied) {
       videoscreen.src = "pianoman.mp4";
-      console.log("Play, isEnded");
+      console.log("Play, isEmpty");
       videoscreen.play();
+    } else {
+      console.log("Not emptied");
     }
   } else {
     //if (!videoscreen.paused) {
