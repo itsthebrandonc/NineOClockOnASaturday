@@ -11,7 +11,7 @@ var secondsIntoFilm = -100;
 
 window.onload = function() {
   videoscreen = $("videoscreen");
-  //videoscreen.setAttribute("controlslist","nodownload");
+  videoscreen.setAttribute("controlslist","nodownload");
   getWorldTime();
   syncUpdate();
 }
@@ -53,16 +53,16 @@ function syncUpdate() {
     if (!startTime) {
       //Start date is 8:59:29
       var startDate = new Date(); //Today (Saturday)
-      startDate.setHours(16); //20
-      startDate.setMinutes(39); //59
+      startDate.setHours(17); //20
+      startDate.setMinutes(29); //59
       startDate.setSeconds(29); //29
       startTime = startDate.getTime();
     }
     if (!hitTime) {
       //Hit date is 9:00:00
       var hitDate = new Date(); //Today (Saturday)
-      hitDate.setHours(16); //21
-      hitDate.setMinutes(40); //00
+      hitDate.setHours(17); //21
+      hitDate.setMinutes(30); //00
       hitDate.setSeconds(00); //00
       hitTime = hitDate.getTime();
     }
@@ -81,12 +81,16 @@ function syncUpdate() {
     console.log("It's not Saturday");
   }
 
-  if (secondsIntoFilm >= 0 && secondsIntoFilm <= 341) { //Sing us a song
+  if (secondsIntoFilm >= 0 && secondsIntoFilm <= 341 && videoscreen.paused) { //Sing us a song
     console.log("Video Time: " + secondsIntoFilm);
-    videoscreen.seekTo(secondsIntoFilm,false);
-    videoscreen.playVideo();
+    videoscreen.src = "pianoman.mp4";
+    videoscreen.play();
   } else {
-    videoscreen.pauseVideo();
+    videoscreen.pause();
+  }
+
+  if (!videoscreen.paused && Math.abs(videoscreen.currentTime-secondsIntoFilm) > 1) {
+    videoscreen.currentTime = secondsIntoFilm;
   }
 
 
