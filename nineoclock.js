@@ -54,7 +54,7 @@ function syncUpdate() {
       //Start date is 8:59:29
       var startDate = new Date(); //Today (Saturday)
       startDate.setHours(17); //20
-      startDate.setMinutes(29); //59
+      startDate.setMinutes(37); //59
       startDate.setSeconds(29); //29
       startTime = startDate.getTime();
     }
@@ -62,7 +62,7 @@ function syncUpdate() {
       //Hit date is 9:00:00
       var hitDate = new Date(); //Today (Saturday)
       hitDate.setHours(17); //21
-      hitDate.setMinutes(30); //00
+      hitDate.setMinutes(38); //00
       hitDate.setSeconds(00); //00
       hitTime = hitDate.getTime();
     }
