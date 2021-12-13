@@ -68,7 +68,7 @@ function syncUpdate() {
     }
 
     secondsIntoFilm = (currentTime - startTime) / 1000;
-    $("status").innerHTML += "Seconds Into Film: " + secondsIntoFilm + "<br>";
+    $("status").innerHTML += "Start Date: " + startDate + "<br>" + "Seconds Into Film: " + secondsIntoFilm + "<br>";
 
     if ((currentTime - startTime) / 1000 > 0 && (currentTime - startTime) / 1000 < 1) {
       console.log("START");
