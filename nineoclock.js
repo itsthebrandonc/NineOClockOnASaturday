@@ -8,17 +8,28 @@ var startTime;
 var hitTime;
 var worldTimeOffset = 0;
 var secondsIntoFilm = -100;
+var playing = false;
 var timeTilStart = 1;
-var playWhenReady = true;
+var useAPI = false;
 
 window.onload = function() {
   videoscreen = $("videoscreen");
   videoscreen.setAttribute("controlslist","nodownload");
   getWorldTime();
   syncUpdate();
+
+  videoscreen.addEventListener('loadstart', function() {
+    console.log("Load Start");
+    //playing = false;
+  });
 }
 
 function getWorldTime() {
+  if (!useAPI) {
+    worldTimeOffset = 0;
+    return;
+  }
+
   var xhr = new XMLHttpRequest();
   xhr.responseType = "json";
   xhr.open("GET", "https://www.worldtimeapi.org/api/timezone/Etc/UTC");
@@ -55,16 +66,16 @@ function syncUpdate() {
     if (!startTime) {
       //Start date is 8:59:29
       var startDate = new Date(); //Today (Saturday)
-      startDate.setHours(18); //20
-      startDate.setMinutes(19); //59
+      startDate.setHours(20); //20
+      startDate.setMinutes(59); //59
       startDate.setSeconds(29); //29
       startTime = startDate.getTime();
     }
     if (!hitTime) {
       //Hit date is 9:00:00
       var hitDate = new Date(); //Today (Saturday)
-      hitDate.setHours(18); //21
-      hitDate.setMinutes(20); //00
+      hitDate.setHours(21); //21
+      hitDate.setMinutes(00); //00
       hitDate.setSeconds(00); //00
       hitTime = hitDate.getTime();
     }
@@ -76,13 +87,13 @@ function syncUpdate() {
       //$("status").innerHTML += "Start Date: " + startDate + "<br>" + "Hit Date: " + hitDate + "<br"> + "Seconds Into Film: " + secondsIntoFilm + "<br>";
     } else if (timeTilStart < -341) {
       $("status").innerHTML = "Enjoy your night!";
-    } else if (timeTilStart < -29) {
+    } else if (timeTilStart < -31) {
       $("status").innerHTML = "It's 9 o'clock on a Saturday!";
     } else {
-      $("status").innerHTML = "";
+      $("status").innerHTML = "Starts In: " + timeTilStart + "<br>" + "9 o'Clock In: " + Math.floor((hitTime - currentTime)/1000);
     }
 
-    $("info").innerHTML = "Date: " + adjustedDate + "<br>" + "Offset: " + worldTimeOffset;
+    $("info").innerHTML = "Time: " + adjustedDate.toLocaleString();
 
     if ((currentTime - startTime) / 1000 > 0 && (currentTime - startTime) / 1000 < 1) {
       console.log("START");
@@ -98,12 +109,11 @@ function syncUpdate() {
 
   if (secondsIntoFilm >= 0 && secondsIntoFilm <= 341) { //Sing us a song
     console.log("Video Time: " + secondsIntoFilm);
-    if (videoscreen.emptied) {
+    if (!playing) {
       videoscreen.src = "pianoman.mp4";
-      console.log("Play, isEmpty");
+      console.log("Begin Playing");
       videoscreen.play();
-    } else {
-      console.log("Not emptied");
+      playing = true;
     }
   } else {
     //if (!videoscreen.paused) {
@@ -112,12 +122,10 @@ function syncUpdate() {
     //}
   }
 
-  if (!videoscreen.paused && Math.abs(videoscreen.currentTime-secondsIntoFilm) > 1) {
-    console.log("Resync");
+  if (!videoscreen.paused && Math.abs(videoscreen.currentTime-secondsIntoFilm) > 0.5) {
+    console.log("Resync " + videoscreen.currentTime);
     videoscreen.currentTime = secondsIntoFilm;
   }
-
-
 
 
 
